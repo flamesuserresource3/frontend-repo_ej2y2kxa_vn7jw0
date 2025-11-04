@@ -1,16 +1,26 @@
-import React from 'react';
-import Spline from '@splinetool/react-spline';
+import React, { Suspense, useState } from 'react';
 import ImageCarousel from './ImageCarousel';
 
+const LazySpline = React.lazy(() => import('@splinetool/react-spline'));
+
 export default function Hero3D() {
+  const [splineError, setSplineError] = useState(false);
+
   return (
     <section className="relative h-[100svh] w-full">
-      {/* 3D Scene */}
+      {/* 3D Scene (lazy) */}
       <div className="absolute inset-0">
-        <Spline
-          scene="https://prod.spline.design/8pX5zM7j3v8m1bH0/scene.splinecode"
-          style={{ width: '100%', height: '100%' }}
-        />
+        <Suspense fallback={<div className="h-full w-full bg-gradient-to-br from-rose-100 via-white to-sky-100" />}>
+          {!splineError ? (
+            <LazySpline
+              scene="https://prod.spline.design/8pX5zM7j3v8m1bH0/scene.splinecode"
+              style={{ width: '100%', height: '100%' }}
+              onError={() => setSplineError(true)}
+            />
+          ) : (
+            <div className="h-full w-full bg-gradient-to-br from-rose-100 via-white to-sky-100" />
+          )}
+        </Suspense>
       </div>
 
       {/* Soft vignette to improve text legibility without blocking interaction */}
