@@ -1,60 +1,34 @@
 import React from 'react';
 import Spline from '@splinetool/react-spline';
-import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero3D() {
-  const { scrollYProgress } = useScroll();
-  const titleY = useTransform(scrollYProgress, [0, 0.3], [0, -80]);
-  const subtitleOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.2]);
-
   return (
-    <section className="relative h-[90vh] w-full overflow-hidden">
+    <section id="top" className="relative min-h-[80vh] w-full overflow-hidden bg-gradient-to-b from-pink-50 via-white to-white">
       <div className="absolute inset-0">
-        {/* 3D Scene */}
+        {/* The Spline scene renders full-bleed. Avoid negative z-index. */}
         <Spline
-          scene="https://prod.spline.design/0r9JQX5m2oK3c9iQ/scene.splinecode"
+          scene="https://prod.spline.design/8Yq8T4eJm5LQ5g0v/scene.splinecode"
           style={{ width: '100%', height: '100%' }}
         />
       </div>
 
-      {/* Subtle gradient glow overlays - don't block interactions */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/60 via-white/20 to-white/80" />
-      <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-pink-300/40 blur-3xl" />
-      <div className="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-violet-300/40 blur-3xl" />
+      {/* Soft gradient glows that don't block interaction */}
+      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-80 w-[60rem] rounded-full bg-pink-300/30 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-fuchsia-300/30 blur-3xl" />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-6 text-center">
-        <motion.h1
-          style={{ y: titleY }}
-          className="font-display text-5xl font-extrabold tracking-tight text-neutral-800 drop-shadow-sm md:text-6xl lg:text-7xl"
-        >
-          ScoopVerse Ice Cream
-        </motion.h1>
-        <motion.p
-          style={{ opacity: subtitleOpacity }}
-          className="mt-4 max-w-2xl text-lg text-neutral-600 md:text-xl"
-        >
-          Hand-crafted scoops, cosmic flavors, and melt-in-your-mouth magic. Scroll to explore our menu.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-8 flex items-center gap-4"
-        >
-          <a
-            href="#flavors"
-            className="rounded-full bg-pink-600 px-6 py-3 text-white shadow-lg shadow-pink-300/50 transition hover:translate-y-[-2px] hover:bg-pink-700"
-          >
-            Explore Flavors
-          </a>
-          <a
-            href="#story"
-            className="rounded-full border border-neutral-300 bg-white/80 px-6 py-3 text-neutral-700 backdrop-blur transition hover:border-neutral-400 hover:bg-white"
-          >
-            Our Story
-          </a>
-        </motion.div>
+      <div className="relative z-10 max-w-6xl mx-auto px-4 pt-28 pb-20">
+        <div className="max-w-2xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900">
+            Cool 3D Scoops, Warmer Smiles
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-slate-600">
+            Explore handcrafted flavors in a delightful 3D experience. Scroll to discover your next favorite scoop.
+          </p>
+          <div className="mt-6 flex gap-3">
+            <a href="#flavors" className="px-4 py-2 rounded-md bg-slate-900 text-white hover:bg-slate-800 transition">Browse Flavors</a>
+            <a href="#order" className="px-4 py-2 rounded-md bg-white/80 ring-1 ring-slate-200 text-slate-800 hover:bg-white transition">Order Now</a>
+          </div>
+        </div>
       </div>
     </section>
   );
