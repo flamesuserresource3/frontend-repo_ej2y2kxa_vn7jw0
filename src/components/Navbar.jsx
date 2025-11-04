@@ -1,17 +1,24 @@
 import React from 'react';
 
-export default function Navbar() {
+const Navbar = () => {
   return (
-    <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/70 border-b border-black/5">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#" className="text-xl font-semibold tracking-tight">Frost & Joy</a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-neutral-600">
-          <a href="#flavors" className="hover:text-black transition-colors">Flavors</a>
-          <a href="#gallery" className="hover:text-black transition-colors">Gallery</a>
-          <a href="#about" className="hover:text-black transition-colors">About</a>
-        </nav>
-        <a href="#cta" className="inline-flex items-center rounded-full bg-black text-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-neutral-800 transition-colors">Order Now</a>
-      </div>
+    <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 border-b border-pink-100">
+      <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-pink-500 text-white font-black shadow-sm">FJ</span>
+          <span className="text-lg sm:text-xl font-semibold text-pink-700">Frost & Joy</span>
+        </div>
+        <ul className="hidden md:flex items-center gap-8 text-pink-700/80">
+          <li><a href="#menu" className="hover:text-pink-700 transition-colors">Menu</a></li>
+          <li><a href="#story" className="hover:text-pink-700 transition-colors">Our Story</a></li>
+          <li><a href="#contact" className="hover:text-pink-700 transition-colors">Contact</a></li>
+        </ul>
+        <div className="flex items-center gap-3">
+          <a href="#order" className="inline-flex items-center rounded-md bg-pink-600 px-4 py-2 text-white hover:bg-pink-700 transition-colors">Order Now</a>
+        </div>
+      </nav>
     </header>
   );
-}
+};
+
+export default Navbar;
